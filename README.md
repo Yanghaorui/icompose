@@ -1,4 +1,4 @@
-# icompose
+# My_compose
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.legogroup.io/Haorui/icompose.git
+git remote add origin https://gitlab.corp.lego.com/haorui/my_compose.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.legogroup.io/Haorui/icompose/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.corp.lego.com/haorui/my_compose/-/settings/integrations)
 
 ## Collaborate with your team
 
