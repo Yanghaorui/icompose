@@ -1,7 +1,7 @@
 cd `dirname $0`
 
 if test $1 = config; then
-  cat conf.d/*
+  ls -l conf.d
 elif [ -z $2 ]; then 
   echo `cp $1/* ./conf.d`  
   echo `docker-compose restart`

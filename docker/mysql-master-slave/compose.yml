@@ -1,0 +1,28 @@
+version: "2"
+networks:
+  mysql:
+    external:
+      name: mysql-net  # 使用外部网络
+services: 
+  mysql-master:
+    image: 'mysql:8.0'
+    ports:
+      - '33061:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+    networks:
+      - mysql
+    volumes:
+      - ./mysql-master/data:/var/lib/mysql  # 持久化数据
+      - ./mysql-master/conf:/etc/mysql/conf.d  # 自定义配置
+  mysql-slave-01:
+    image: 'mysql:8.0'
+    ports:
+      - '33062:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+    networks:
+      - mysql
+    volumes:
+      - ./mysql-slave-01/data:/var/lib/mysql  # 持久化数据
+      - ./mysql-slave-01/conf:/etc/mysql/conf.d  # 自定义配置
