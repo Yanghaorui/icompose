@@ -1,0 +1,29 @@
+version: "3.9"
+networks:
+  mysql:
+    external:
+      name: mysql-net
+
+services:
+  thirdparty-entitlement:
+    build: .
+    ports:
+      - "8088:8088"
+    tmpfs:
+      - /tmp:noexec,nosuid,size=10m
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/thirdparty_entitlement?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root1234
+      LLSHRE_AUTH_URL: https://app-ump-qa.llshre.com/auth_test
+      LLSHRE_INSIDERS_CLIENT_ID: d816c35fa5f7481db30197622f5e4a14
+      LLSHRE_INSIDERS_CLIENT_SECRET: 52524882cfc940e2adb8f441aa7a4e4d
+      LLSHRE_LBR_CLIENT_ID: 53c234772f6a4278a182eaafb6824212
+      LLSHRE_LBR_CLIENT_SECRET: aaea7fdf453d4d6298e3c636834eebb1
+      LLSHRE_OBR_CLIENT_ID: b1d3df736b0b4ce188e749cc0776bf66
+      LLSHRE_OBR_CLIENT_SECRET: 3bc31408af9c4a60ace1b9beec40becd
+      LLSHRE_SERVICE_URL: https://api-ump-qa.llshre.com/lps_api_test
+      IDP_DOMAIN: https://idp.dev.lego.cn;IDP_CLIENTID=0e861eea-b2b2-435a-9d7f-cc7c5ac66933
+    networks:
+      - mysql

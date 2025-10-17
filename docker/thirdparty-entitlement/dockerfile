@@ -1,0 +1,17 @@
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu/jre:17-22.04_87-linuxarm64
+
+# The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile.
+WORKDIR /usr/app
+
+# Moving the app artifact from the host to the container
+COPY app.jar app.jar
+
+# Use Asia/Shanghai as localtime and timezone
+#RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
+# With it we inform Docker that a container will listen to specific port, the same as our app is using.
+EXPOSE 8088 8000 5005
+
+#ENTRYPOINT ["/bin/sh", "-c", "java -jar -Xmx1024m -Xms1024m -Duser.timezone=GMT+08 cdt-notification-service-application-1.0.0-SNAPSHOT.jar --spring.profiles.active=${APP_ENV}"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
+#CMD java $APP_JVM_OPTS -jar app.jar $APP_MAIN_ARGS
